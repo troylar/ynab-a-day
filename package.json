@@ -1,0 +1,27 @@
+{
+  "name": "ynab-a-day",
+  "version": "1.0.0",
+  "description": "Send daily summaries from YNAB",
+  "main": "index.js",
+  "dependencies": {
+    "ynab": "^1.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/troylar/ynab-a-day.git"
+  },
+  "keywords": [
+    "ynab",
+    "finance"
+  ],
+  "author": "Troy Larson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/troylar/ynab-a-day/issues"
+  },
+  "homepage": "https://github.com/troylar/ynab-a-day#readme"
+}
