@@ -1,7 +1,4 @@
-# ynab-a-day
-A simple and customizable YNAB daily report for your significant other who doesn't care about budgeting, but whom you care about keeping informed
-
-##Overview
+## Overview
 For decades I have been a financial planning fanatic. Going back to Quicken for DOS in the late 80s, it's been a crazy fun passion of mine and now with YNAB, even more so.
 
 However, my very busy professional wife doesn't share the same love of financial management. She's frugal, but loses interest quickly when we start going over spreadsheets and reports. She won't install YNAB and even if she did, she just wouldn't take the time to look at the data. It's not that she doesn't care, it's just that she trusts me to handle the finances and to inform her when there are concerns.
