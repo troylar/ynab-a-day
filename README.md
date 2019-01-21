@@ -20,17 +20,17 @@ The goals of this project for my significant other:
 
 ## Installation
 1. Clone this repo:
- 
+ ````
     $ git clone https://github.com/troylar/ynab-a-day.git
     $ cd ynab-a-day
     $ npm install
-
+````
 2. Create an [API token](https://api.youneedabudget.com "API token")
 
 3. Create a new config file:
-
+````
     $ cp ./config/default.js.example ./config/default.js
-
+````
 4. Modify the config file you just created.
 
    * Replace `<YNAB API Key>` with your key you just created in step #2
