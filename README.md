@@ -18,6 +18,36 @@ The goals of this project for my significant other:
   - Allow for customization presentation of the data (*in progress*)
   - Provide this data via Synology Chat, Slack or other messaging solution that allows for non-intrusive multiple channels, so that it doesn't get annoying
 
+## Sample Report
+The report is purposely simplistic and mininimal, but thorough. The goal is to provide the information in a very high-level format so it can be glanced at quickly without having to pore over 50 different categories and line items.
+
+````
+----- Mon, Jan 21 -----
+NET WORTH: $399,000.00
+
+otherAsset: $300,000.00
+  House: $100,000.00
+  Ford Pinto Asset: $100,000.00
+  401K: $100,000.00
+
+otherLiability: -$100,000.00
+  Mortgage: -$50,000.00
+  Ford Pinto: -$50,000.00
+
+savings: $100,000.00
+  Savings: $100,000.00
+
+checking: $100,000.00
+  Checking: $100,000.00
+
+creditCard: -$1,000.00
+  Woolworth's Card: -$1,000.00
+
+---- SPENDING ----
+Mobile Phones: $100.00
+Groceries: $200.00
+Dining Out: $75.00
+````
 ## Installation
 1. Clone this repo:
  ````
