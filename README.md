@@ -68,5 +68,9 @@ Dining Out: $75.00
    * Replace the `categories` section with a list of all the categories you want to display
    * If you have Synology Chat, create a webhook and replace `<Webhook>`, or just take this out and add your own
 
+5. Run the report
+```
+    $ node ./src/index.js
+````
 ## Next Steps
 I would love for others to add additional integrations (Slack, HipChat, etc.). The value here is to allow significant others to have visibility without being email-spammed or overwhelmed with notifications.
