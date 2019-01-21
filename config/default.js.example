@@ -1,0 +1,30 @@
+const config = {
+    ynab: {
+        key: '<YNAB API Key>',
+        budget: '<Budget Name>',
+        accounts: [
+          'My Checking',
+          'My Card',
+          'My Savings 1',
+          'My Savings 2',
+        ],
+        categories: {
+          'Immediate Obligations': [
+            'Groceries',
+            'Mobile Phones'
+          ],
+          'True Expenses': [
+            'Child Care',
+            'Gas (Car)'
+          ],
+          'Just for Fun': [
+            'Dining Out',
+            'Movies'
+          ]
+        }
+    },
+    synology_chat: {
+      webhook: '<Webhook URL>'
+    }
+}
+module.exports = config;
