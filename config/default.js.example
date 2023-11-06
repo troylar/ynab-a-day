@@ -23,8 +23,15 @@ const config = {
           ]
         }
     },
-    synology_chat: {
-      webhook: '<Webhook URL>'
+    output: {
+      locale: 'en-US',
+      synology_chat: {
+        webhook: '<Webhook URL>'
+      },
+      telegram: {
+        bot_token: '<Telegram BOT Token>',
+        destination_id: '<Your Telegram user ID or a channel ID>',
+      }
     }
 }
 module.exports = config;

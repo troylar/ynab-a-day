@@ -64,13 +64,24 @@ Dining Out: $75.00
 4. Modify the config file you just created.
 
    * Replace `<YNAB API Key>` with your key you just created in step #2
-   * Replace the `accounts` section with a list of all the accounts you want to display
-   * Replace the `categories` section with a list of all the categories you want to display
-   * If you have Synology Chat, create a webhook and replace `<Webhook>`, or just take this out and add your own
+   * Replace `<Budget Name>` with your the name (or the ID) of your budget
+   * Replace the `accounts` section with a list of all the accounts you want to display (you can use names or IDs)
+   * Replace the `categories` section with a list of all the categories you want to display (you can use names or IDs)
+   * (Optional) Change the locale value from the default en-US to your preferred one
+   * If you have Synology Chat:
+      * create a webhook and replace `<Webhook>`
+   * If you want to use Telegram:
+      * get a bot token from @BotFather and replace `<<Telegram BOT Token>>`
+      * get the destination ID (can be an user ID or a channel ID) and replace `<<Your Telegram user ID or a channel ID>>`
 
 5. Run the report
 ```
     $ node ./src/index.js
 ````
+## Supported output channels
+
+- [Synology](https://www.synology.com/en-global/dsm/feature/chat)
+- [Telegram](https://web.telegram.org/a/)
+
 ## Next Steps
 I would love for others to add additional integrations (Slack, HipChat, etc.). The value here is to allow significant others to have visibility without being email-spammed or overwhelmed with notifications.
