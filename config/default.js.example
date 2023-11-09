@@ -25,12 +25,18 @@ const config = {
     },
     output: {
       locale: 'en-US',
-      synology_chat: {
+      synology: {
+        enabled: true,
         webhook: '<Webhook URL>'
       },
       telegram: {
+        enabled: true,
         bot_token: '<Telegram BOT Token>',
         destination_id: '<Your Telegram user ID or a channel ID>',
+      },
+      stdout: {
+        enabled: true,
+        format: '<json or text>',
       }
     }
 }
