@@ -10,6 +10,24 @@ const stdoutReporter = require('./reporters/stdout');
 
 class Engine {
 
+    _getFractionOfCurrentMonth() {
+        const now = new Date();
+        let beginningOfNextMonth;
+
+        const beginningOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        if (now.getMonth() == 11) {
+            beginningOfNextMonth = new Date(now.getFullYear() + 1, 0, 1);
+        } else {
+            beginningOfNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        }
+
+        const duration = beginningOfNextMonth.getTime() - beginningOfMonth.getTime();
+        const passed = now.getTime() - beginningOfMonth.getTime();
+
+        return 1.0 * passed / duration;
+    }
+
     async _getDataForConfig(conf) {
         const client = new YNABClient(conf.ynab.accessToken);
 
@@ -71,6 +89,22 @@ class Engine {
             }
         }
 
+        const fractionOfCurrentMonth = this._getFractionOfCurrentMonth();
+
+        const categoryWithWarningForExcessiveSpending = [];
+        if (fractionOfCurrentMonth >= 0.03) {
+            for (const macroCategory of relevantCategories) {
+                for (const category of macroCategory.categories) {
+                    if (category.activity < 0 && category.balance > 0) {
+                        const projectedAdditionalSpending = (-1 * category.activity) / fractionOfCurrentMonth;
+                        if (projectedAdditionalSpending > category.balance) {
+                            categoryWithWarningForExcessiveSpending.push(category);
+
+                        }
+                    }
+                }
+            }
+        }
         const data = [];
         
         data.push({ header: 'Your YNAB digest for ' + moment().format('ddd, MMM D') });
@@ -110,6 +144,16 @@ class Engine {
         }
 
         data.push({ separator: 1 });
+
+        if (categoryWithWarningForExcessiveSpending.length) {
+            data.push({ header: 'EXCESSIVE SPENDING' });
+
+            for (const category of categoryWithWarningForExcessiveSpending) {
+                data.push({ text: '⚠️ review spending for ' + category.name });
+            }
+    
+            data.push({ separator: 1 });
+        }
 
         return data;
     }
