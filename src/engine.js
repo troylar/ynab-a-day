@@ -5,6 +5,7 @@ const YNABClient = require('./ynab/client');
 const synologyReporter = require('./reporters/synology');
 const telegramReporter = require('./reporters/telegram');
 const emailReporter = require('./reporters/email');
+const webhookReporter = require('./reporters/webhook');
 const stdoutReporter = require('./reporters/stdout');
 
 class Engine {
@@ -131,6 +132,7 @@ class Engine {
                 attemptDelivery('synology', synologyReporter),
                 attemptDelivery('email', emailReporter),
                 attemptDelivery('telegram', telegramReporter),
+                attemptDelivery('webhook', webhookReporter),
             ]);
         } catch (err) {
             throw new Error('error running reporters', { cause: err })

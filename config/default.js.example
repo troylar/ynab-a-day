@@ -1,12 +1,10 @@
 const config = {
     ynab: {
-        key: '<YNAB API Key>',
-        budget: '<Budget Name>',
+        key: '<YNAB API key>',
+        budget: '<budget name or ID>',
         accounts: [
           'My Checking',
           'My Card',
-          'My Savings 1',
-          'My Savings 2',
         ],
         categories: {
           'Immediate Obligations': [
@@ -16,10 +14,6 @@ const config = {
           'True Expenses': [
             'Child Care',
             'Gas (Car)'
-          ],
-          'Just for Fun': [
-            'Dining Out',
-            'Movies'
           ]
         }
     },
@@ -27,25 +21,31 @@ const config = {
       locale: 'en-US',
       synology: {
         enabled: true,
-        webhook: '<Webhook URL>'
+        webhook: '<webhook URL>'
+      },
+      webhook: {
+        enabled: true,
+        url: '<webhook URL>'
       },
       telegram: {
         enabled: true,
-        bot_token: '<Telegram BOT Token>',
-        destination_id: '<Your Telegram user ID or a channel ID>',
+        bot_token: '<Ttelegram BOT Token>',
+        destination_id: '<your Telegram user ID or a channel ID>',
       },    
       email: {
         enabled: true,
-        host: "smtp-relay.host.com",
+        host: "<your SMTP host>",
         port: 587,
         auth: {
-          user: "<your-login>",
-          pass: "<your-key>",
+          user: "<your username>",
+          pass: "<your password>",
         },
-        from: '<your-email>',
+        from: '<your email>',
         fromName: '<a friendly name>',
-        to: ['<your-receiver>'],
-        subject: `Your subject`,
+        to: ['<your receiver>'],
+        cc: ['<optional, your cc receiver>'],
+        bcc: ['<optional, your bcc receiver>'],
+        subject: `<optional, a custom subject>`,
       },
       stdout: {
         enabled: true,

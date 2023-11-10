@@ -21,6 +21,10 @@ function getConfigFromFile() {
                 enabled: getIfPresent('output.synology.enabled'),
                 webhook: getIfPresent('output.synology.webhook') || getIfPresent('synology_chat.webhook'), // compatibility with current config syntax
             },
+            webhook: {
+                enabled: getIfPresent('output.webhook.enabled'),
+                url: getIfPresent('output.webhook.url'),
+            },
             telegram: {
                 enabled: getIfPresent('output.telegram.enabled'),
                 bot_token: getIfPresent('output.telegram.bot_token'),

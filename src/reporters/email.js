@@ -29,6 +29,8 @@ async function report(rootConfig, data) {
     const from = requireParam('from');
     const fromName = getParam('fromName') || 'YNAB digest';
     const to = requireParam('to');
+    const cc = getParam('cc');
+    const bcc = getParam('bcc');
     let subject = getParam('subject') || 'Your YNAB digest for $today';
 
     let port = 587;
@@ -59,6 +61,8 @@ async function report(rootConfig, data) {
             name: fromName,
         },
         to,
+        cc,
+        bcc,
         subject,
         text,
         html,
