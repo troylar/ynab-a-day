@@ -26,6 +26,17 @@ function getConfigFromFile() {
                 bot_token: getIfPresent('output.telegram.bot_token'),
                 destination_id: getIfPresent('output.telegram.destination_id'),
             },
+            email: {
+                enabled: getIfPresent('output.email.enabled'),
+                host: getIfPresent('output.email.host'),
+                port: getIfPresent('output.email.port'),
+                user: getIfPresent('output.email.auth.user'),
+                pass: getIfPresent('output.email.auth.pass'),
+                from: getIfPresent('output.email.from'),
+                fromName: getIfPresent('output.email.fromName'),
+                to: getIfPresent('output.email.to'),
+                subject: getIfPresent('output.email.subject'),
+            },
             stdout: {
                 enabled: getIfPresent('output.stdout.enabled'),
                 format: getIfPresent('output.stdout.format', 'text'),

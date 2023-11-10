@@ -4,6 +4,7 @@ const YNABClient = require('./ynab/client');
 
 const synologyReporter = require('./reporters/synology');
 const telegramReporter = require('./reporters/telegram');
+const emailReporter = require('./reporters/email');
 const stdoutReporter = require('./reporters/stdout');
 
 class Engine {
@@ -43,41 +44,48 @@ class Engine {
                 ))
             }));
 
+        const reportAccounts = !!conf.ynab.accounts.length;
+
         let totals = {};
         let accounts = {};
         let networth = 0;
-        for (let account of accountsData) {
-            for (let acct of conf.ynab.accounts) {
-                if (account.name == acct) {
-                    account.balance = account.balance / 1000
-                    const balance = account.balance
-                    networth = networth + balance;
-
-                    const acct_type = account.type
-
-                    totals[acct_type] = (totals[acct_type] || 0) + balance
-
-                    if (!accounts[acct_type]) {
-                        accounts[acct_type] = [];
+        if (reportAccounts) {
+            for (let account of accountsData) {
+                for (let acct of conf.ynab.accounts) {
+                    if (account.name == acct) {
+                        account.balance = account.balance / 1000
+                        const balance = account.balance
+                        networth = networth + balance;
+    
+                        const acct_type = account.type
+    
+                        totals[acct_type] = (totals[acct_type] || 0) + balance
+    
+                        if (!accounts[acct_type]) {
+                            accounts[acct_type] = [];
+                        }
+                        accounts[acct_type].push(account)
                     }
-                    accounts[acct_type].push(account)
                 }
             }
         }
 
         const data = [];
         
-        data.push({ header: moment().format('ddd, MMM D') });
-
-        data.push({ text: 'NET WORTH: ' + formatter.format(networth) });
+        data.push({ header: 'Your YNAB digest for ' + moment().format('ddd, MMM D') });
         data.push({ separator: 1 });
 
-        for (var key in totals) {
-            data.push({ text: key + ': ' + formatter.format(totals[key]) });
-            accounts[key].forEach(function (acct) {
-                data.push({ text: '  ' + acct.name + ': ' + formatter.format(acct.balance) });
-            })
+        if (reportAccounts) {
+            data.push({ text: 'NET WORTH: ' + formatter.format(networth) });
             data.push({ separator: 1 });
+
+            for (var key in totals) {
+                data.push({ text: key + ': ' + formatter.format(totals[key]) });
+                accounts[key].forEach(function (acct) {
+                    data.push({ text: '  ' + acct.name + ': ' + formatter.format(acct.balance) });
+                })
+                data.push({ separator: 1 });
+            }
         }
 
         data.push({ header: 'AVAILABLE' });
@@ -121,6 +129,7 @@ class Engine {
             reportResults = await Promise.allSettled([
                 attemptDelivery('stdout', stdoutReporter),
                 attemptDelivery('synology', synologyReporter),
+                attemptDelivery('email', emailReporter),
                 attemptDelivery('telegram', telegramReporter),
             ]);
         } catch (err) {
